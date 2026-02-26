@@ -14,7 +14,7 @@ function getUsers(){
     .then(data=>{
         console.log(data);
         data.forEach(element=>{
-            html+=`<li>${element.first_name}${element.last_name}<li>`;
+            html+=`<li>${element.image}${element.name}<li>`;
         })
         content.innerHTML=html;
     })
@@ -23,3 +23,4 @@ function getUsers(){
     })
 
 }
+
