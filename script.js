@@ -6,7 +6,7 @@ window.addEventListener('load', ()=>{
 
 function getUsers(){
     let html=""
-    fetch('https://bscs3-employee-3.onrender.com/api/users', {mode:'cors'})
+    fetch('https://api.sampleapis.com/monstersanctuary/monsters', {mode:'cors'})
     .then(response=>{
         console.log(response);
         return response.json();
@@ -21,4 +21,5 @@ function getUsers(){
     .catch(error=>{
         console.log(error)
     })
+
 }
