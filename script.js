@@ -11,14 +11,14 @@ submit.addEventListener("click", () => {
     let gender = document.querySelector("#gender").value;
     let formData = { fname, lname, email, gender };
 
-    fetch("http://localhost:5000/api/users", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-            "Content-Type": "application/json",
-        },
+    fetch("https://backendemployee-v9ps.onrender.com/api/users", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
     }).catch((error) => {
-        console.log(error);
+      console.log(error);
     });
     alert("User Added Successfully");
     location.reload();
@@ -31,7 +31,7 @@ window.addEventListener("load", () => {
 function getUsers(){
     let html=""
     //FETCH API
-    fetch('http://localhost:5000/api/users',{mode:'cors'})
+    fetch('https://backendemployee-v9ps.onrender.com/api/users',{mode:'cors'})
     .then(response=>{
         console.log(response);
         return response.json();
@@ -91,38 +91,42 @@ function getUsers(){
 
 function deleteMember(id){
     if(confirm("Are you sure you want to delete this user?")){
-        fetch('http://localhost:5000/api/users',{
-            method: 'DELETE',
-            body: JSON.stringify({id}),
-            headers:{
-                "Content-Type":"application/json"
-            },
-        }).then(response=>response.text())
-        .then(response=>console.log(response))
-        .catch(error=>{
-            console.log(error);
+        fetch("https://backendemployee-v9ps.onrender.com/api/users", {
+          method: "DELETE",
+          body: JSON.stringify({ id }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
+          .then((response) => response.text())
+          .then((response) => console.log(response))
+          .catch((error) => {
+            console.log(error);
+          });
         alert("User Deleted Successfully");
         location.reload();
     } 
 }
 
 function searchMember(id){
-   fetch(`http://localhost:5000/api/users/${id}`)
-  .then(response=> response.json())
-  .then(data=>{
-    document.querySelector('#fname').value=data[0].first_name;
-    document.querySelector('#lname').value=data[0].last_name;
-    document.querySelector('#email').value=data[0].email;
-    document.querySelector('#gender').value=data[0].gender;
-    document.querySelector('#ID').value=data[0].id;
-    
-    // Scroll to form
-    document.querySelector('#fname').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    document.querySelector('#fname').focus();
-  }).catch(error=>{
-    console.log(error)
-  })
+   fetch(`https://backendemployee-v9ps.onrender.com/api/users/${id}`)
+     .then((response) => response.json())
+     .then((data) => {
+       document.querySelector("#fname").value = data[0].first_name;
+       document.querySelector("#lname").value = data[0].last_name;
+       document.querySelector("#email").value = data[0].email;
+       document.querySelector("#gender").value = data[0].gender;
+       document.querySelector("#ID").value = data[0].id;
+
+       // Scroll to form
+       document
+         .querySelector("#fname")
+         .scrollIntoView({ behavior: "smooth", block: "center" });
+       document.querySelector("#fname").focus();
+     })
+     .catch((error) => {
+       console.log(error);
+     });
 }
 
 update.addEventListener(`click`,()=>{
@@ -134,15 +138,15 @@ update.addEventListener(`click`,()=>{
   let formData = {fname, lname, email, gender, id:ID};
 
   if(confirm("Are you sure you want to update this user?")){
-      fetch(`http://localhost:5000/api/users`,{
-        method: 'PUT',
+      fetch(`https://backendemployee-v9ps.onrender.com/api/users`, {
+        method: "PUT",
         body: JSON.stringify(formData),
-        headers:{
-          "Content-Type":"application/json"
+        headers: {
+          "Content-Type": "application/json",
         },
-      }).catch((error)=>{
+      }).catch((error) => {
         console.log(error);
-      })
+      });
       alert("User Updated Successfully");
       location.reload();
   } 
