@@ -17,19 +17,11 @@ submit.addEventListener("click", () => {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .catch((error) => {
-      console.log(error);
-    })
-    .then((response) => response.json())
-    .then(() => {
-      alert("User Added Successfully");
-      location.reload();
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("Failed to add user. Please try again.");
-    });
+  }).catch((error) => {
+    console.log(error);
+  });
+  alert("User Added Successfully");
+  location.reload();
 });
 
 window.addEventListener("load", () => {
@@ -159,3 +151,4 @@ update.addEventListener(`click`, () => {
     location.reload();
   }
 });
+
